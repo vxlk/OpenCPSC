@@ -11,7 +11,17 @@
 //==============================================================================
 MainComponent::MainComponent()
 {
+	///ADD A LISTENER TO THE BUTTON ... REDIRECT TO NEW CLASS -> THAT COURSE'S HOME PAGE
     setSize (600, 400);
+	for (int i = 0; i < numCourses; ++i)
+	{
+		//would eventually access a course directory
+		courseList.push_back(new TextButton("CPSC", "the first course I am offering"));
+		courseList[i]->setBounds(10, 70, 90, 20); // sets the x position, y position, width, and height of the button
+		//courseList[i]->addListener(this); // allows the editor to respond to clicks
+		courseList[i]->setClickingTogglesState(true); // makes the button toggle its state when clicked
+		addAndMakeVisible(courseList[i]);
+	}
 }
 
 MainComponent::~MainComponent()
@@ -26,7 +36,7 @@ void MainComponent::paint (Graphics& g)
 
     g.setFont (Font (16.0f));
     g.setColour (Colours::white);
-    g.drawText ("Hello World!", getLocalBounds(), Justification::centred, true);
+    g.drawText ("Welcome, click a degree program to get started", getLocalBounds(), Justification::centred, true);
 }
 
 void MainComponent::resized()
